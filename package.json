@@ -10,8 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "react": "18.2.0",
-    "react-native": "0.74.2"
+    "react-native": "0.74.2",
+    "react-native-dotenv": "^3.4.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

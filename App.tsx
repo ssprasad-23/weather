@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import Weather from './weather';
+import Weather from './Weather';
 
 const App = () => {
   return (
