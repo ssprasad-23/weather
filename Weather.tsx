@@ -2,6 +2,7 @@ import React, { useEffect, useState} from "react";
 import { View, Text, ActivityIndicator, StyleSheet, FlatList, ImageBackground} from "react-native";
 import { API_KEY } from "@env";
 import Geolocation from '@react-native-community/geolocation';
+import dayjs from 'dayjs';
 
 const BASE_URL = `https://api.openweathermap.org/data/2.5/`;
 
@@ -57,51 +58,80 @@ const Home = () => {
     
   return (
     <ImageBackground source={{uri: bgimage}} style={styles.container}>
-      <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.3)'}}/>
-        <Text style={styles.location}>{weather.name}</Text>
-        <Text style={styles.temp}>{weather.main.temp}</Text>
-        <FlatList
-          data={forecast}
-          horizontal
-          contentContainerStyle={{
-            gap: 10,
-            height:108,
-          }}
-          renderItem={({item}) => (
-            <View style={styles.forecast}>
-              <Text>{item.main.temp}°</Text>
-            </View>
-          )}
-        />
+      <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.3)'}}
+      />
+      <View>
+          <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+            <Text style={styles.location}>{weather.name}</Text>
+            <Text style={styles.temp}>{Math.round(weather.main.temp)}°</Text>
+          </View>
+
+          <FlatList
+            data={forecast}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ 
+              flexGrow: 0, 
+              height: 200,
+              marginBottom: 40,
+            }}
+            contentContainerStyle={{
+              gap: 10,
+              paddingHorizontal: 25,
+              height:150,
+            }}
+            renderItem={({item}) => (
+                <View style={styles.forecast}>
+                  <Text style={styles.date}>{dayjs(item.dt * 1000).format('ddd')}</Text>
+                  <Text style={styles.date}>{dayjs(item.dt * 1000).format('hA')}</Text>
+                  <Text style={styles.forecasttemp}>{Math.round(item.main.temp)}°</Text>
+                </View>
+            )}
+          />
+      </View>
+
     </ImageBackground>
   );
 };
-
 const styles = StyleSheet.create({
-    container: {
-      height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'white',
-    },
-    location: {
-      fontFamily: 'InterSemi',
-      fontSize: 40,
-    },
-    temp: {
-      fontFamily: 'InterBlack',
-      fontSize: 100,
-      fontWeight: 'bold',
-      color: 'gray'
-    },
-    forecast:{
-      backgroundColor: 'snow',
-      padding: 10,
-      aspectRatio: 9/16,
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+  container: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 50,
+  },
+  location: {
+    fontFamily: 'Inter',
+    fontSize: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+  },
+  temp: {
+    fontFamily: 'InterBlack',
+    fontSize: 120,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  forecast:{
+    backgroundColor: 'rgba(231, 222, 242 , 0.9)',
+    padding: 10,
+    aspectRatio: 9/16,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  date: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+  },
+  forecasttemp: {
+    fontFamily: 'InterBold',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginVertical: 10,
+  }
 });
 
 export default Home;
