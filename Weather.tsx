@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { View, Text, ActivityIndicator, StyleSheet, FlatList} from "react-native";
+import { View, Text, ActivityIndicator, StyleSheet, FlatList, ImageBackground} from "react-native";
 import { API_KEY } from "@env";
 import Geolocation from '@react-native-community/geolocation';
 
@@ -29,6 +29,7 @@ type WeatherForecast = {
 const Home = () => {
   const [weather, setWeather] = useState<Weather>();
   const [forecast, setForecast] = useState<WeatherForecast[]>();
+  const bgimage = 'https://images.unsplash.com/photo-1570395141072-b3120d705942?q=80&w=2727&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
@@ -55,23 +56,24 @@ const Home = () => {
   }
     
   return (
-    <View style={styles.container}>
-      <Text style={styles.location}>{weather.name}</Text>
-      <Text style={styles.temp}>{weather.main.temp}</Text>
-      <FlatList
-        data={forecast}
-        horizontal
-        contentContainerStyle={{
-          gap: 10,
-          height:108,
-        }}
-        renderItem={({item}) => (
-          <View style={styles.forecast}>
-            <Text>{item.main.temp}°</Text>
-          </View>
-        )}
-      />
-    </View>
+    <ImageBackground source={{uri: bgimage}} style={styles.container}>
+      <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.3)'}}/>
+        <Text style={styles.location}>{weather.name}</Text>
+        <Text style={styles.temp}>{weather.main.temp}</Text>
+        <FlatList
+          data={forecast}
+          horizontal
+          contentContainerStyle={{
+            gap: 10,
+            height:108,
+          }}
+          renderItem={({item}) => (
+            <View style={styles.forecast}>
+              <Text>{item.main.temp}°</Text>
+            </View>
+          )}
+        />
+    </ImageBackground>
   );
 };
 
@@ -103,3 +105,4 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
+
