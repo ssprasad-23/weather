@@ -47,6 +47,7 @@ Code Structure
   
 <img width="289" alt="access device location" src="https://github.com/ssprasad-23/Weather/assets/89695486/1371e080-b6c4-4912-97dc-a62c6ee36a58">
 
+
 <img width="293" alt="display forcast data" src="https://github.com/ssprasad-23/Weather/assets/89695486/d9233126-cc28-4284-b3d3-4f8dae39b458">
 
 <img width="422" alt="Screenshot" src="https://github.com/ssprasad-23/Weather/assets/89695486/680903e4-0933-4f11-8717-8a23f38277a1">
