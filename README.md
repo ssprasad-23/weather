@@ -12,13 +12,7 @@ Installation
 1. Clone the repository:
    https://github.com/ssprasad-23/Weather.git
 
-2. Navigate to tht project directory:
-   cd Weather
-
-3. Install the dependencies:
-   npm install
-
-4. Create a .env file in the root of the directory and add your OpenWeatherMap API key:
+2. Create a .env file in the root of the directory and add your OpenWeatherMap API key:
    API_KEY=
 
 
