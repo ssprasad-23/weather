@@ -17,7 +17,7 @@ Installation
 
 
 Running the app
-1. Start the emtro bundler:
+1. Start the application:
    npx react-native start
 
 2. Run the app on the desired platform:
