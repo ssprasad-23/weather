@@ -83,5 +83,4 @@ npx react-native run-android
 
 ## Contact
 
-- LinkedIn: http://www.linkedin.com/in/shynal-prasad
 - Email: pshynal23@gmail.com
